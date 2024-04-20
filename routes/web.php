@@ -52,6 +52,7 @@ Route::get('/blog-delete-{id}', function (string $id) {
 Route::get('/controller-index', [App\Http\Controllers\BlogController::class, 'index']);
 
 
+// ------------------------- Login, Sign up et Logout---------------------------------//
 // Sign up
 Route::get('/signup', function () {
     return view('signup');
@@ -59,11 +60,17 @@ Route::get('/signup', function () {
 // Enregistrement en bdd
 Route::post('/register', [App\Http\Controllers\RegisterController::class, 'register']);
 
-
 // Log in
 Route::get('/login', function () {
     return view('login');
 });
+// Verification en bdd
+Route::post('/connection', [App\Http\Controllers\ConnectionController::class, 'connection']);
+
+// Se déconnecter
+Route::get('/logout', [App\Http\Controllers\LogoutController::class, 'logout'])->name('logout');
+// ------------------------- Login et Sign up ---------------------------------//
+
 
 // Customer Description
 Route::get('/customer-description', function () {

@@ -11,12 +11,20 @@
   <div class="min-h-screen flex justify-center items-center">
     <div class="bg-white p-8 rounded-lg shadow-md w-96">
       <h2 class="text-3xl font-bold text-center mb-6">Connexion</h2>
-      <form>
+      <form action="connection" method="post">
         {{ csrf_field() }}
+
         @if(session('success'))
             <div class="alert alert-success">
                 {{ session('success') }}
             </div>
+            <br>
+        @endif
+
+        @if ($errors->has('email'))
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $errors->first('email') }}</strong>
+            </span>
             <br>
         @endif
 
