@@ -29,16 +29,18 @@
           </button>
         </div>
         @guest
-          <div class="flex items-center">
-            <a href="/login" class="mr-5 text-gray-600 mr-4 hover:text-gray-900">Connexion</a>
-            <a href="/signup" class="text-indigo-600 hover:text-indigo-900">Inscription</a>
-          </div>
+            <div class="flex items-center">
+                <a href="/login" class="mr-5 text-gray-600 mr-4 hover:text-gray-900">Connexion</a>
+                <a href="/signup" class="text-indigo-600 hover:text-indigo-900">Inscription</a>
+            </div>
         @else
-          <a href="/customer-description" class="mr-5 text-gray-600 mr-4 hover:text-gray-900">
-            <span><p>{{ auth()->user()->prenom }}</p>
-            <p>{{ auth()->user()->nom }}</p></span>
-          </a>
-          <a href="/logout" class="text-indigo-600 hover:text-indigo-900">Se déconnecter</a>
+          <a href="{{ route('user.description') }}" class="mr-5 text-gray-600 mr-4 hover:text-gray-900">
+                <span>
+                    <p>{{ auth()->user()->prenom }}</p>
+                    <p>{{ auth()->user()->nom }}</p>
+                </span>
+            </a>
+            <a href="/logout" class="text-indigo-600 hover:text-indigo-900">Se déconnecter</a>
         @endguest
        
       </div>

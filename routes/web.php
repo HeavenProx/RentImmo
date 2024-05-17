@@ -58,7 +58,7 @@ Route::get('/signup', function () {
     return view('signup');
 });
 // Enregistrement en bdd
-Route::post('/register', [App\Http\Controllers\RegisterController::class, 'register']);
+Route::post('/register', [App\Http\Controllers\UserController::class, 'register']);
 
 // Log in
 Route::get('/login', function () {
@@ -72,9 +72,10 @@ Route::get('/logout', [App\Http\Controllers\LogoutController::class, 'logout'])-
 // ------------------------- Login et Sign up ---------------------------------//
 
 
-// Customer Description
-Route::get('/customer-description', function () {
-    return view('customerDescription');
+// User Description
+Route::middleware(['auth'])->group(function () {
+    Route::get('/user-description', [App\Http\Controllers\UserController::class, 'edit'])->name('user.description');
+    Route::post('/user-update', [App\Http\Controllers\UserController::class, 'update'])->name('user.update');
 });
 
 // Navbar

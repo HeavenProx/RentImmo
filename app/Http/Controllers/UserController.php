@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
-class RegisterController extends Controller
+class UserController extends Controller
 {
     public function register(Request $request)
     {
@@ -36,5 +36,40 @@ class RegisterController extends Controller
 
         // Redirection vers une page de confirmation ou de connexion
         return redirect('/login')->with('success', 'Votre compte a été créé avec succès ! Connectez-vous maintenant.');
+    }
+
+
+    public function show($id)
+    {
+        $user = User::find($id);
+
+        if (!$user) {
+            abort(404, 'Utilisateur non trouvé');
+        }
+
+        return view('userDescription', ['user' => $user]);
+    }
+
+    public function edit()
+    {
+        $user = auth()->user();
+        return view('userDescription', ['user' => $user]);
+    }
+
+    public function update(Request $request)
+    {
+        $user = auth()->user();
+
+        // Validez et mettez à jour les données de l'utilisateur
+        $request->validate([
+            'prenom' => 'required|string|max:255',
+            'nom' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users,email,'.$user->id,
+        ]);
+
+        $user->update($request->only(['prenom', 'nom', 'email']));
+
+        // Rediriger avec un message de succès
+        return redirect()->route('user.description')->with('success', 'Vos informations ont été mises à jour avec succès.');
     }
 }
