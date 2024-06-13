@@ -47,13 +47,13 @@ class UserController extends Controller
             abort(404, 'Utilisateur non trouvé');
         }
 
-        return view('userDescription', ['user' => $user]);
+        return view('page/userDescription', ['user' => $user]);
     }
 
     public function edit()
     {
         $user = auth()->user();
-        return view('userDescription', ['user' => $user]);
+        return view('page/userDescription', ['user' => $user]);
     }
 
     public function update(Request $request)

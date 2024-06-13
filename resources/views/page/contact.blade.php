@@ -8,7 +8,7 @@
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
 <body class="bg-gray-100">
-    @include('navbar')
+  @include('tools/buttonHome')
 
   <div class="min-h-screen flex justify-center items-center">
     <div class="bg-white p-8 rounded-lg shadow-md w-96">

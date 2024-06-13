@@ -6,9 +6,10 @@
   <title>Inscription</title>
   <!-- Tailwind CSS -->
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-  <link href="../resources/css/app.css">
+  <link href="{{ asset('css/app.css') }}">
 </head>
 <body>
+  @include('tools/buttonHome')
   <div class="min-h-screen flex justify-center items-center">
     <div class="orange p-8 rounded-lg shadow-md w-96">
       <h2 class="text-3xl font-bold text-center mb-6">Inscription</h2>

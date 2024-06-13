@@ -12,22 +12,21 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex justify-between items-center h-16">
         <div class="flex-shrink-0">
-          <a href="/" class="text-2xl font-bold text-indigo-600">Mon Site</a>
+          <a href="/" class="text-2xl font-bold text-indigo-600">RentImmo</a>
         </div>
-        <div class="flex-3 flex justify-center">
-          <div class="flex-grow">
-            <input type="text" placeholder="Rechercher" class="border border-gray-300 rounded-md px-4 py-2 w-full focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent">
-          </div>
-          <div class="flex-grow ml-4">
-            <input type="text" placeholder="Ville" class="border border-gray-300 rounded-md px-4 py-2 w-full focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent">
-          </div>
-          <div class="flex-grow ml-4">
-            <input type="text" placeholder="Code Postal" class="border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent">
-          </div>
-          <button class="ml-4 bg-indigo-600 text-white font-semibold py-2 px-4 rounded-md">
-            <img src="{{ asset('images/loupe.svg') }}" alt="Loupe de recherche" width="20" height="20">
-          </button>
+
+
+        <div class="text-center">
+            <div class="m-4">
+                <a href="/annonces/create" class="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-md inline-block">
+                    Vendre mon bien
+                </a>
+                <a href="" class="bg-green-500 hover:bg-green-600 text-white font-semibold py-2 px-4 rounded-md inline-block ml-2">
+                    Chercher mon bien
+                </a>
+            </div>
         </div>
+        
         @guest
             <div class="flex items-center">
                 <a href="/login" class="mr-5 text-gray-600 mr-4 hover:text-gray-900">Connexion</a>

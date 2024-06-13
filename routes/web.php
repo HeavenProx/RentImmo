@@ -85,10 +85,20 @@ Route::get('/navbar', function () {
 
 // Contact
 Route::get('/contact', function () {
-    return view('contact');
+    return view('page/contact');
 });
 
 // Qui sommes nous
 Route::get('/qui-sommes-nous', function () {
-    return view('quiSommesNous');
+    return view('page/quiSommesNous');
 });
+
+
+/* --------------------- Annonce ------------------- */
+// routes/web.php
+Route::get('/annonces/create', [App\Http\Controllers\AnnonceController::class, 'create'])->name('annonces.create');
+Route::post('/annonces', [App\Http\Controllers\AnnonceController::class, 'store'])->name('annonces.store');
+
+
+Route::get('/annonce/{id}', 'AnnonceController@show')->name('annonce.show');
+
