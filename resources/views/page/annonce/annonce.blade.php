@@ -1,84 +1,62 @@
-<!-- resources/views/annonce.blade.php -->
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Détails de l'annonce</title>
+  <!-- Tailwind CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+</head>
+<body class="">
 
+<div class="container mx-auto px-4 py-8">
+    <h1 class="text-3xl font-bold text-blue-600 text-center mb-6">{{ $annonce->titre }}</h1>
+    <p class="text-gray-700 mb-4">{{ $annonce->description }}</p>
 
-
-@section('content')
-<div class="container mx-auto px-4">
-    <div class="my-6">
-        <!-- Affichage du titre et de la description de l'annonce -->
-        <h2 class="text-2xl font-bold">{{ $annonce->titre }}</h2>
-        <p class="mt-2 text-gray-600">{{ $annonce->description }}</p>
-    </div>
-
-    <div class="my-6">
-        <!-- Carousel de photos -->
-        <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
-            <div class="carousel-inner">
-                @foreach ($annonce->images as $image)
-                <div class="carousel-item {{ $loop->first ? 'active' : '' }}">
-                    <img src="{{ asset('storage/' . $image->chemin_image) }}" class="d-block w-100" alt="...">
+    <div id="carouselExampleIndicators" class="carousel slide relative" data-bs-ride="carousel">
+        <div class="carousel-inner relative w-full overflow-hidden rounded-lg">
+            @foreach ($images as $image)
+                <div class="carousel-item {{ $loop->first ? 'active' : '' }} float-left w-full">
+                    <img src="{{ asset($image->chemin_image) }}" class="block w-full h-96 object-cover imgggggggggg" alt="Image">
                 </div>
-                @endforeach
-            </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
-            </button>
+            @endforeach
         </div>
+        <button class="carousel-control-prev absolute top-0 bottom-0 left-0 flex items-center justify-center p-0 text-center border-0 hover:outline-none hover:no-underline focus:outline-none focus:no-underline" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon inline-block bg-no-repeat" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next absolute top-0 bottom-0 right-0 flex items-center justify-center p-0 text-center border-0 hover:outline-none hover:no-underline focus:outline-none focus:no-underline" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+            <span class="carousel-control-next-icon inline-block bg-no-repeat" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
     </div>
 
     <div class="my-6">
         <!-- Informations supplémentaires sur l'annonce -->
-        <ul>
-            <li><strong>Adresse:</strong> {{ $annonce->adresse }}</li>
-            <li><strong>Prix:</strong> {{ $annonce->prix }} €</li>
-            <!-- Ajoutez d'autres informations selon votre modèle -->
-        </ul>
-    </div>
-
-    <div class="my-6">
-        <!-- Formulaire de contact express -->
-        <form action="{{ route('contact.submit') }}" method="POST">
-            @csrf
-            <div class="mb-3">
-                <label for="name" class="form-label">Nom</label>
-                <input type="text" class="form-control" id="name" name="name">
-            </div>
-            <div class="mb-3">
-                <label for="phone" class="form-label">Téléphone</label>
-                <input type="text" class="form-control" id="phone" name="phone">
-            </div>
-            <div class="mb-3">
-                <label for="email" class="form-label">Email</label>
-                <input type="email" class="form-control" id="email" name="email">
-            </div>
-            <button type="submit" class="btn btn-primary">Envoyer</button>
-        </form>
+        <p class="bg-blue-600 text-white mb-2 p-4 text-center rounded">{{ $annonce->adresse }}</p>
+        <p class="bg-blue-600 text-white mb-2 p-4 text-center rounded">{{ $annonce->prix }} €</p>
     </div>
 
     <div class="my-6">
         <!-- Carte Google -->
-        <div id="map"></div>
+        <div id="map" class="w-full h-96 bg-gray-200 rounded"></div>
     </div>
 
-    <div class="my-6">
+    <div class="my-6 text-center">
         <!-- Ajouter en Favoris -->
         @auth
-        <form action="{{ route('favoris.add', $annonce->id) }}" method="POST">
-            @csrf
-            <button type="submit" class="btn btn-primary">Ajouter aux favoris</button>
-        </form>
+            <form action="" method="POST">
+                @csrf
+                <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-orange-600 transition duration-300">Ajouter aux favoris</button>
+            </form>
         @else
-        <p>Connectez-vous pour ajouter cette annonce aux favoris.</p>
-        <a href="{{ route('login') }}" class="btn btn-primary">Se connecter</a>
+            <p class="text-gray-700 mb-4">Connectez-vous pour ajouter cette annonce aux favoris.</p>
+            <a href="/login" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-orange-600 transition duration-300">Se connecter</a>
         @endauth
     </div>
 </div>
-@endsection
+
 
 @push('scripts')
 <script>
@@ -105,3 +83,7 @@
     }
 </script>
 @endpush
+
+</body>
+
+</html>

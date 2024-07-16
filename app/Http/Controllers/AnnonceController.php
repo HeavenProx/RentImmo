@@ -14,7 +14,7 @@ class AnnonceController extends Controller
         $annonce = Annonce::findOrFail($id);
         $images = $annonce->images;
 
-        return view('annonce.show', compact('annonce', 'images'));
+        return view('page/annonce/annonce', compact('annonce', 'images'));
     }
 
     public function create()

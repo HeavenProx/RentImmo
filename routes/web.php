@@ -55,14 +55,14 @@ Route::get('/controller-index', [App\Http\Controllers\BlogController::class, 'in
 // ------------------------- Login, Sign up et Logout---------------------------------//
 // Sign up
 Route::get('/signup', function () {
-    return view('signup');
+    return view('connection/signup');
 });
 // Enregistrement en bdd
 Route::post('/register', [App\Http\Controllers\UserController::class, 'register']);
 
 // Log in
 Route::get('/login', function () {
-    return view('login');
+    return view('connection/login');
 });
 // Verification en bdd
 Route::post('/connection', [App\Http\Controllers\ConnectionController::class, 'connection']);
@@ -100,5 +100,5 @@ Route::get('/annonces/create', [App\Http\Controllers\AnnonceController::class, '
 Route::post('/annonces', [App\Http\Controllers\AnnonceController::class, 'store'])->name('annonces.store');
 
 
-Route::get('/annonce/{id}', 'AnnonceController@show')->name('annonce.show');
+Route::get('/annonce-{id}', [App\Http\Controllers\AnnonceController::class, 'show'])->name('annonce.show');
 

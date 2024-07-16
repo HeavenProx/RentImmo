@@ -18,10 +18,16 @@
 
         <div class="text-center">
             <div class="m-4">
+                @guest
+                <a href="/login" class="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-md inline-block">
+                    Vendre mon bien
+                </a>
+                @else
                 <a href="/annonces/create" class="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-md inline-block">
                     Vendre mon bien
                 </a>
-                <a href="" class="bg-green-500 hover:bg-green-600 text-white font-semibold py-2 px-4 rounded-md inline-block ml-2">
+                @endguest
+                <a href="#search" class="bg-green-500 hover:bg-green-600 text-white font-semibold py-2 px-4 rounded-md inline-block ml-2">
                     Chercher mon bien
                 </a>
             </div>
