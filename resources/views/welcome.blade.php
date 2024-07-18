@@ -15,6 +15,7 @@
         
         @include('tools/navbar')
 
+        
         <section class="relative flex items-center justify-center h-screen bg-cover bg-center" 
         style="background-image: url('{{ asset('images/2-personne-dos-visite.svg') }}'); ">
             <div class="absolute inset-0 bg-black opacity-40"></div> 

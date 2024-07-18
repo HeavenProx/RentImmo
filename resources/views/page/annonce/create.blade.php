@@ -7,7 +7,7 @@
   <title>Inscription</title>
   <!-- Tailwind CSS -->
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-  <link href="../resources/css/app.css">
+  <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 <body>
   @include('tools/buttonHome')
@@ -24,7 +24,7 @@
             @endif
         </div>
 
-        <div class="bg-gray shadow-xl rounded-md p-6">
+        <div class="bg-gray-100 shadow-xl rounded-md p-6">
             <form action="{{ route('annonces.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
 
@@ -60,5 +60,7 @@
         </div>
     </div>
 
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCCAjpCNHZXQiBRY3MSoZ7YYOQST1HtF0U&libraries=places&callback=initMap"></script>
+<script src="{{ asset('js/completeAdresse.js') }}"></script>
 </body>
 </html>
