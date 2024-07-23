@@ -14,6 +14,14 @@ class Annonce extends Model
         'description',
         'adresse',
         'prix',
+        'metre',
+        'chambre',
+        'salleDeBain',
+        'type',
+        'parking',
+        'garage',
+        'terrain',
+        'etat',
     ];
 
     public function images()

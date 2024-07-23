@@ -24,12 +24,21 @@ class AnnonceController extends Controller
 
     public function store(Request $request)
     {
+        
         // Validation des données du formulaire
         $request->validate([
             'titre' => 'required|string|max:255',
             'description' => 'required|string',
             'adresse' => 'required|string|max:255',
             'prix' => 'required|numeric',
+            'metre' => 'required|numeric',
+            'chambre' => 'required|numeric',
+            'salleDeBain' => 'required|numeric',
+            'type' => 'required|string|in:Maison,Appartement,Studio,Chalet,Villa,Autre',
+            'parking' => 'required|boolean',
+            'garage' => 'required|boolean',
+            'terrain' => 'required|boolean',
+            'etat' => 'required|string|in:Neuf,Rénové,Plateau',
             'images.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
@@ -39,6 +48,14 @@ class AnnonceController extends Controller
             'description' => $request->input('description'),
             'adresse' => $request->input('adresse'),
             'prix' => $request->input('prix'),
+            'metre' => $request->input('metre'),
+            'chambre' => $request->input('chambre'),
+            'salleDeBain' => $request->input('salleDeBain'),
+            'type' => $request->input('type'),
+            'parking' => $request->input('parking'),
+            'garage' => $request->input('garage'),
+            'terrain' => $request->input('terrain'),
+            'etat' => $request->input('etat'),
         ]);
 
         // Associer l'annonce à l'utilisateur connecté
@@ -47,10 +64,10 @@ class AnnonceController extends Controller
         // Sauvegarde de l'annonce
         $annonce->save();
 
-        // Traitement des images
+       // Traitement des images
         if ($request->hasFile('images')) {
             foreach ($request->file('images') as $image) {
-                $filename = $image->getClientOriginalName();
+                $filename = time() . '_' . $image->getClientOriginalName();
                 $path = $image->storeAs('public/images/annonces/', $filename);
 
                 // Créer une nouvelle entrée AnnonceImage pour chaque image téléchargée
