@@ -47,7 +47,11 @@
         <div class="text-center">
             <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-md">Enregistrer</button>
         </div>
-      </form>
+    </form>
+
+    <div class="text-center mt-5">
+      <a href="{{ route('favoris.index') }}" class="bg-green-500 text-white px-4 py-2 rounded-md">Voir mes favoris</a>
+    </div>
     </div>
   </div>
 </body>

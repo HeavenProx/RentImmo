@@ -50,6 +50,7 @@ class UserController extends Controller
         return view('page/userDescription', ['user' => $user]);
     }
 
+
     public function edit()
     {
         $user = auth()->user();

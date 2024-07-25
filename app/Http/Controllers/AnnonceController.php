@@ -24,7 +24,7 @@ class AnnonceController extends Controller
 
     public function index()
     {
-        $annonces = Annonce::with('images')->get(); // Assuming you have a relation 'images' defined in the Annonce model
+        $annonces = Annonce::with('images')->get();
         return view('page/search/searchAnnonce', compact('annonces'));
     }
 

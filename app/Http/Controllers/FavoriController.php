@@ -9,20 +9,25 @@ use Illuminate\Support\Facades\Auth;
 
 class FavoriController extends Controller
 {
-    public function toggleFavori($annonceId)
+    public function index()
+    {
+        $user = Auth::user();
+        $favoris = $user->favoris()->with('images')->get();
+
+        return view('page.userFavoris', compact('favoris'));
+    }
+
+    public function toggle(Annonce $annonce)
     {
         $user = Auth::user();
 
-        if ($user->favoris()->where('annonce_id', $annonceId)->exists()) {
-            // Si l'annonce est déjà dans les favoris, la retirer
-            $user->favoris()->detach($annonceId);
-            $message = 'Annonce retirée des favoris!';
+        if ($user->favoris->contains($annonce->id)) {
+            $user->favoris()->detach($annonce->id);
+            return back()->with('success', 'Annonce retirée des favoris.');
         } else {
-            // Si l'annonce n'est pas dans les favoris, l'ajouter
-            $user->favoris()->attach($annonceId);
-            $message = 'Annonce ajoutée aux favoris!';
+            $user->favoris()->attach($annonce->id);
+            return back()->with('success', 'Annonce ajoutée aux favoris.');
         }
-
-        return redirect()->back()->with('success');
     }
+  
 }

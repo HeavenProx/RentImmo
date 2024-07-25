@@ -113,5 +113,7 @@ Route::get('/search', [AnnonceController::class, 'index']);
 
 /* --------------------- Favori ------------------- */
 Route::middleware('auth')->group(function () {
-    Route::post('/favori/toggle/{annonce}', [FavoriController::class, 'toggleFavori'])->name('favori.toggle');
+    Route::get('/favoris', [FavoriController::class, 'index'])->name('favoris.index');
+    Route::post('favori/toggle/{annonce}', [FavoriController::class, 'toggle'])->name('favori.toggle');
+    Route::delete('favori/remove/{annonce}', [FavoriController::class, 'remove'])->name('favori.remove');
 });

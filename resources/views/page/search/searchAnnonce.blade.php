@@ -10,6 +10,8 @@
 </head>
 <body class="bg-gray-100">
 
+@include('tools/navbar')
+
     <div id="search" class="flex-3 flex justify-between p-10 m-auto">
         <div class="flex-grow">
             <input type="text" placeholder="Rechercher" class="border border-gray-300 rounded-md px-4 py-2 w-full focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent">
