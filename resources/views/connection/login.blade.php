@@ -41,6 +41,7 @@
           <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-md">Se connecter</button>
         </div>
       </form>
+      <p class="mt-4 text-center"><a href="/signup" class="text-blue-600 hover:text-gray-900">Vous n'avez pas de compte ? Créer le !</a></p>
     </div>
   </div>
 </body>

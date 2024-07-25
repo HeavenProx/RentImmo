@@ -25,21 +25,6 @@
             </div>
         </section>
 
-        <div id="search" class="flex-3 flex justify-center p-10">
-          <div class="flex-grow">
-            <input type="text" placeholder="Rechercher" class="border border-gray-300 rounded-md px-4 py-2 w-full focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent">
-          </div>
-          <div class="flex-grow ml-4">
-            <input type="text" placeholder="Ville" class="border border-gray-300 rounded-md px-4 py-2 w-full focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent">
-          </div>
-          <div class="flex-grow ml-4">
-            <input type="text" placeholder="Code Postal" class="border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent">
-          </div>
-          <button class="ml-4 bg-indigo-600 text-white font-semibold py-2 px-4 rounded-md">
-            <img src="{{ asset('images/loupe.svg') }}" alt="Loupe de recherche" width="20" height="20">
-          </button>
-        </div>
-
         @include('tools/footer')         
     </body>
 </html>

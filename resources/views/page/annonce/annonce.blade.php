@@ -9,6 +9,8 @@
   <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 </head>
 <body class="bg-gray-100">
+@include('tools/buttonHome')
+@include('tools/buttonList')
 
 <div class="mx-auto px-10 pt-8 pb-5 max-w-screen-2xl">
     <h1 class="text-3xl font-bold text-blue-600 text-center mb-6">{{ $annonce->titre }}</h1>
@@ -47,10 +49,21 @@
         <div class="my-6 text-center">
             <!-- Ajouter en Favoris -->
             @auth
-                <form action="" method="POST">
+                @if (Auth::user()->favoris->contains($annonce->id))
+                <form action="{{ route('favori.toggle', $annonce->id) }}" method="POST">
                     @csrf
-                    <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-orange-600 transition duration-300">Ajouter aux favoris</button>
+                    <button type="submit" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
+                        Supprimer des favoris
+                    </button>
                 </form>
+                @else
+                <form action="{{ route('favori.toggle', $annonce->id) }}" method="POST">
+                    @csrf
+                    <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                        Ajouter aux favoris
+                    </button>
+                </form>
+                @endif
             @else
                 <p class="text-gray-700 mb-4">Connectez-vous pour ajouter cette annonce aux favoris.</p>
                 <a href="/login" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-orange-600 transition duration-300">Se connecter</a>

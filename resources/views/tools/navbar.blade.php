@@ -27,7 +27,7 @@
                     Vendre mon bien
                 </a>
                 @endguest
-                <a href="#search" class="bg-green-500 hover:bg-green-600 text-white font-semibold py-2 px-4 rounded-md inline-block ml-2">
+                <a href="/search" class="bg-green-500 hover:bg-green-600 text-white font-semibold py-2 px-4 rounded-md inline-block ml-2">
                     Chercher mon bien
                 </a>
             </div>

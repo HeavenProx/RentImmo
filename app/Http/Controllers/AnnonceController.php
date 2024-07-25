@@ -22,6 +22,12 @@ class AnnonceController extends Controller
         return view('page/annonce/create');
     }
 
+    public function index()
+    {
+        $annonces = Annonce::with('images')->get(); // Assuming you have a relation 'images' defined in the Annonce model
+        return view('page/search/searchAnnonce', compact('annonces'));
+    }
+
     public function store(Request $request)
     {
         

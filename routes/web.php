@@ -1,6 +1,12 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\BlogController;
+use App\Http\Controllers\FavoriController; 
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\LogoutController;
+use App\Http\Controllers\ConnectionController;
+use App\Http\Controllers\AnnonceController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -49,7 +55,7 @@ Route::get('/blog-delete-{id}', function (string $id) {
 
 
 // Afficher controller 
-Route::get('/controller-index', [App\Http\Controllers\BlogController::class, 'index']);
+Route::get('/controller-index', [BlogController::class, 'index']);
 
 
 // ------------------------- Login, Sign up et Logout---------------------------------//
@@ -58,24 +64,24 @@ Route::get('/signup', function () {
     return view('connection/signup');
 });
 // Enregistrement en bdd
-Route::post('/register', [App\Http\Controllers\UserController::class, 'register']);
+Route::post('/register', [UserController::class, 'register']);
 
 // Log in
 Route::get('/login', function () {
     return view('connection/login');
 });
 // Verification en bdd
-Route::post('/connection', [App\Http\Controllers\ConnectionController::class, 'connection']);
+Route::post('/connection', [ConnectionController::class, 'connection']);
 
 // Se déconnecter
-Route::get('/logout', [App\Http\Controllers\LogoutController::class, 'logout'])->name('logout');
+Route::get('/logout', [LogoutController::class, 'logout'])->name('logout');
 // ------------------------- Login et Sign up ---------------------------------//
 
 
 // User Description
 Route::middleware(['auth'])->group(function () {
-    Route::get('/user-description', [App\Http\Controllers\UserController::class, 'edit'])->name('user.description');
-    Route::post('/user-update', [App\Http\Controllers\UserController::class, 'update'])->name('user.update');
+    Route::get('/user-description', [UserController::class, 'edit'])->name('user.description');
+    Route::post('/user-update', [UserController::class, 'update'])->name('user.update');
 });
 
 // Navbar
@@ -96,9 +102,16 @@ Route::get('/qui-sommes-nous', function () {
 
 /* --------------------- Annonce ------------------- */
 // routes/web.php
-Route::get('/annonces/create', [App\Http\Controllers\AnnonceController::class, 'create'])->name('annonces.create');
-Route::post('/annonces', [App\Http\Controllers\AnnonceController::class, 'store'])->name('annonces.store');
+Route::get('/annonces/create', [AnnonceController::class, 'create'])->name('annonces.create');
+Route::post('/annonces', [AnnonceController::class, 'store'])->name('annonces.store');
 
 
-Route::get('/annonce-{id}', [App\Http\Controllers\AnnonceController::class, 'show'])->name('annonce.show');
+Route::get('/annonce-{id}', [AnnonceController::class, 'show'])->name('annonce.show');
 
+/* --------------------- Search ------------------- */
+Route::get('/search', [AnnonceController::class, 'index']);
+
+/* --------------------- Favori ------------------- */
+Route::middleware('auth')->group(function () {
+    Route::post('/favori/toggle/{annonce}', [FavoriController::class, 'toggleFavori'])->name('favori.toggle');
+});
