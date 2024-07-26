@@ -11,6 +11,7 @@ class Annonce extends Model
 
     protected $fillable = [
         'titre',
+        'venteLocation',
         'description',
         'adresse',
         'prix',
@@ -32,5 +33,10 @@ class Annonce extends Model
     public function favoris()
     {
         return $this->belongsToMany(User::class, 'favoris');
+    }
+
+    public function favoritedBy()
+    {
+        return $this->belongsToMany(User::class, 'favoris', 'annonce_id', 'user_id');
     }
 }

@@ -39,7 +39,7 @@ class UserController extends Controller
         return redirect('/login')->with('success', 'Votre compte a été créé avec succès ! Connectez-vous maintenant.');
     }
 
-    public function index()
+    public function myAnnonce()
     {
         $user = Auth::user();
         $annonces = $user->annonces()->with('images')->get();

@@ -50,7 +50,7 @@
                 <img src="{{ $annonce->images->first()->chemin_image ?? 'path/to/default/image.jpg' }}" alt="Image de l'annonce" class="w-full h-48 object-cover rounded-lg">
             </div>
             <div class="flex-1 pl-4">
-                <h3 class="text-xl font-bold mb-2">{{ $annonce->titre }}</h3>
+                <h3 class="text-xl font-bold mb-2">{{ $annonce->venteLocation ? 'Vente' : 'Location' }} : {{ $annonce->titre }}</h3>
                 <p class="text-gray-700 mb-1">Prix: {{ $annonce->prix }} €</p>
                 <p class="text-gray-700 mb-1">Adresse: {{ $annonce->adresse }}</p>
                 <a href="{{ route('annonce.show', $annonce->id) }}" class="text-blue-500 mt-2 block">Voir plus</a>

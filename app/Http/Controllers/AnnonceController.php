@@ -17,6 +17,7 @@ class AnnonceController extends Controller
         return view('page/annonce/annonce', compact('annonce', 'images'));
     }
 
+
     public function create()
     {
         return view('page/annonce/create');
@@ -24,9 +25,27 @@ class AnnonceController extends Controller
 
     public function index()
     {
-        $annonces = Annonce::with('images')->get();
-        return view('page/search/searchAnnonce', compact('annonces'));
+        $user = Auth::user();
+        $annonces = $user->annonces()->with('images')->get();
+
+        return view('page.myAnnonce', compact('annonces'));
     }
+
+    public function search()
+    {
+        $annonces = Annonce::all();
+        return view('page.search.searchAnnonce', compact('annonces'));
+    }
+
+
+    public function myAnnonce()
+    {
+        $user = Auth::user();
+        $annonces = $user->annonces()->with(['images', 'favoritedBy'])->get();
+    
+        return view('user.index', compact('annonces'));
+    }
+
 
     public function edit($id)
     {
@@ -35,8 +54,9 @@ class AnnonceController extends Controller
             return redirect()->route('user.annonces.index')->with('error', 'Vous n\'êtes pas autorisé à modifier cette annonce.');
         }
 
-        return view('page.annonceEdit', compact('annonce'));
+        return view('page.annonce.annonceEdit', compact('annonce'));
     }
+
 
     public function destroy($id)
     {
@@ -49,6 +69,7 @@ class AnnonceController extends Controller
         return redirect()->route('user.index')->with('success', 'Annonce supprimée avec succès.');
     }
 
+
     public function update(Request $request, $id)
     {
         $annonce = Annonce::findOrFail($id);
@@ -58,6 +79,7 @@ class AnnonceController extends Controller
 
         $request->validate([
             'titre' => 'required|string|max:255',
+            'venteLocation' => 'required|boolean',
             'description' => 'required|string',
             'adresse' => 'required|string|max:255',
             'prix' => 'required|numeric',
@@ -81,6 +103,7 @@ class AnnonceController extends Controller
         // Validation des données du formulaire
         $request->validate([
             'titre' => 'required|string|max:255',
+            'venteLocation' => 'required|boolean',
             'description' => 'required|string',
             'adresse' => 'required|string|max:255',
             'prix' => 'required|numeric',
@@ -98,6 +121,7 @@ class AnnonceController extends Controller
         // Création de l'annonce
         $annonce = new Annonce([
             'titre' => $request->input('titre'),
+            'venteLocation' => $request->input('venteLocation'),
             'description' => $request->input('description'),
             'adresse' => $request->input('adresse'),
             'prix' => $request->input('prix'),

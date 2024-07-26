@@ -6,7 +6,7 @@
 @include('tools/buttonList')
 
 <div class="mx-auto px-10 pt-8 pb-5 max-w-screen-2xl">
-    <h1 class="text-3xl font-bold text-blue-600 text-center mb-6">{{ $annonce->titre }}</h1>
+    <h1 class="text-3xl font-bold text-blue-600 text-center mb-6">{{ $annonce->venteLocation ? 'Vente' : 'Location' }} : {{ $annonce->titre }}</h1>
     <p class="text-gray-700 mb-4">{{ $annonce->description }}</p>
 </div>
 

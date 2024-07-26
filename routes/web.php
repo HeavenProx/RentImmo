@@ -59,7 +59,7 @@ Route::get('/qui-sommes-nous', function () {
 Route::get('/annonces/create', [AnnonceController::class, 'create'])->name('annonces.create');
 Route::post('/annonces', [AnnonceController::class, 'store'])->name('annonces.store');
 
-Route::get('/mes-annonces', [UserController::class, 'index'])->name('user.index');
+Route::get('/mes-annonces', [AnnonceController::class, 'index'])->name('user.index');
 
 Route::get('/annonce-{id}', [AnnonceController::class, 'show'])->name('annonce.show');
 
@@ -69,7 +69,7 @@ Route::put('/mes-annonces/{id}', [AnnonceController::class, 'update'])->name('us
 
 
 /* --------------------- Search ------------------- */
-Route::get('/search', [AnnonceController::class, 'index']);
+Route::get('/search', [AnnonceController::class, 'search']);
 
 /* --------------------- Favori ------------------- */
 Route::middleware('auth')->group(function () {

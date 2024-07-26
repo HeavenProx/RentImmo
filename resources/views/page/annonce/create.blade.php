@@ -25,6 +25,17 @@
             </div>
 
             <div class="mb-10">
+                <label class="block text-gray-700 text-xl font-bold mb-2">Vente ou location :</label>
+                <div>
+                    <input type="radio" id="vente" name="venteLocation" value="1" class="form-radio text-blue-500">
+                    <label for="vente" class="ml-2 text-gray-700">Vente</label>
+                    
+                    <input type="radio" id="location" name="venteLocation" value="0" class="form-radio text-blue-500 ml-10">
+                    <label for="location" class="ml-2 text-gray-700">Location</label>
+                </div>
+            </div>
+
+            <div class="mb-10">
                 <label for="description" class="block text-gray-700 text-xl font-bold mb-2">Description</label>
                 <textarea class="form-textarea w-full rounded-md shadow-md border-gray-300 p-2" id="description" name="description" rows="3" required></textarea>
             </div>

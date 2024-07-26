@@ -1,9 +1,8 @@
 @extends('layout')
 
 @section('content')
-<div class="min-h-screen flex justify-center items-center">
-    <div class="bg-white p-8 rounded-lg shadow-md bg-gray-200">
-        <div class="container mx-auto">
+<div class="container mx-auto py-10">
+    <div class="bg-white py-5 px-8 rounded-lg shadow-md bg-gray-200">
             <h2 class="text-3xl font-bold text-center mb-6">Modifier l'annonce</h2>
             <form action="{{ route('user.annonces.update', $annonce->id) }}" method="POST">
                 @csrf
@@ -12,6 +11,14 @@
                 <div class="mb-4">
                     <label for="titre" class="block text-lg font-medium text-gray-700">Titre</label>
                     <input type="text" id="titre" name="titre" class="py-2 px-4 mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" value="{{ $annonce->titre }}" required>
+                </div>
+
+                <div class="mb-4">
+                    <label for="venteLocation" class="block text-lg font-medium text-gray-700">Vente ou location :</label>
+                    <select id="venteLocation" name="venteLocation" class="py-2 px-4 mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
+                        <option value="1" {{ $annonce->venteLocation ? 'selected' : '' }}>Vente</option>
+                        <option value="0" {{ !$annonce->venteLocation ? 'selected' : '' }}>Location</option>
+                    </select>
                 </div>
 
                 <div class="mb-4">
