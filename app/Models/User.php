@@ -49,4 +49,9 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Annonce::class, 'favoris', 'user_id', 'annonce_id');
     }
+
+    public function annonces()
+    {
+        return $this->hasMany(Annonce::class, 'createur_id');
+    }
 }

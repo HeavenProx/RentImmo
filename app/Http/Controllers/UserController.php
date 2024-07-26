@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -38,6 +39,13 @@ class UserController extends Controller
         return redirect('/login')->with('success', 'Votre compte a été créé avec succès ! Connectez-vous maintenant.');
     }
 
+    public function index()
+    {
+        $user = Auth::user();
+        $annonces = $user->annonces()->with('images')->get();
+
+        return view('page.myAnnonce', compact('annonces'));
+    }
 
     public function show($id)
     {

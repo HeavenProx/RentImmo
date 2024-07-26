@@ -3,7 +3,7 @@
 @section('content')
 
 @include('tools/navbar')
-<div id="search" class="flex-3 flex justify-between p-10 m-auto bg-gray-100">
+<div id="search" class="flex-3 flex justify-between p-10 m-auto bg-gray-200">
     <div class="flex-grow">
         <input type="text" placeholder="Rechercher" class="border border-gray-300 rounded-md px-4 py-2 w-full focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent">
     </div>
@@ -15,6 +15,29 @@
     </div>
     <button class="ml-4 bg-indigo-600 text-white font-semibold py-2 px-4 rounded-md">
     <img src="{{ asset('images/loupe.svg') }}" alt="Loupe de recherche" width="20" height="20">
+    </button>
+</div>
+
+<div id="search2" class="flex flex-wrap justify-between py-5 px-12 m-auto bg-gray-100">
+    <div class="flex-grow flex items-center">
+        <label class="mr-4">
+            <input type="radio" name="transaction_type" value="acheter" class="mr-2"> Acheter
+        </label>
+        <label>
+            <input type="radio" name="transaction_type" value="louer" class="mr-2"> Louer
+        </label>
+    </div>
+    <div class="flex-grow ml-3 pr-10">
+        <input type="text" placeholder="Localisation" class="border border-gray-300 rounded-md px-4 py-2 w-full focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent">
+    </div>
+    <div class="flex-grow ml-4 pl-10">
+        <input type="text" placeholder="Budget Min" class="border border-gray-300 rounded-md px-4 py-2 w-full focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent">
+    </div>
+    <div class="flex-grow ml-4">
+        <input type="text" placeholder="Budget Max" class="border border-gray-300 rounded-md px-4 py-2 w-full focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent">
+    </div>
+    <button class="ml-4 bg-indigo-600 text-white font-semibold py-2 px-4 rounded-md flex items-center">
+        <img src="{{ asset('images/loupe.svg') }}" alt="Loupe de recherche" width="20" height="20" class="mr-2"> Rechercher
     </button>
 </div>
 

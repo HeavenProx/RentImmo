@@ -39,13 +39,19 @@
             <label for="email" class="block text-lg font-medium text-gray-700">Email</label>
             <input type="email" id="email" name="email" class="py-2 px-4 mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" value="{{ $user->email }}" required>
         </div>
-        <div class="text-center">
+        <div class="text-center pt-2">
             <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-md">Enregistrer</button>
         </div>
     </form>
 
+    <br>
+
     <div class="text-center mt-5">
       <a href="{{ route('favoris.index') }}" class="bg-green-500 text-white px-4 py-2 rounded-md">Voir mes favoris</a>
+    </div>
+
+    <div class="text-center mt-5">
+      <a href="{{ route('user.index') }}" class="bg-red-500 text-white px-4 py-2 rounded-md">Voir mes annonces</a>
     </div>
     </div>
   </div>

@@ -28,6 +28,20 @@ class AnnonceController extends Controller
         return view('page/search/searchAnnonce', compact('annonces'));
     }
 
+    public function destroy($id)
+    {
+        $annonce = Annonce::findOrFail($id);
+
+        // Check if the logged-in user is the owner of the annonce
+        if ($annonce->createur_id != Auth::id()) {
+            return redirect()->route('user.index')->with('error', 'Vous n\'êtes pas autorisé à supprimer cette annonce.');
+        }
+
+        $annonce->delete();
+
+        return redirect()->route('user.index')->with('success', 'Annonce supprimée avec succès.');
+    }
+
     public function store(Request $request)
     {
         

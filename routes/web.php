@@ -59,8 +59,11 @@ Route::get('/qui-sommes-nous', function () {
 Route::get('/annonces/create', [AnnonceController::class, 'create'])->name('annonces.create');
 Route::post('/annonces', [AnnonceController::class, 'store'])->name('annonces.store');
 
+Route::get('/mes-annonces', [UserController::class, 'index'])->name('user.index');
 
 Route::get('/annonce-{id}', [AnnonceController::class, 'show'])->name('annonce.show');
+
+Route::delete('/mes-annonces/{id}', [AnnonceController::class, 'destroy'])->name('user.annonce.destroy');
 
 /* --------------------- Search ------------------- */
 Route::get('/search', [AnnonceController::class, 'index']);
