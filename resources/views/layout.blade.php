@@ -18,8 +18,13 @@
     @yield('content')
     
     <script src="{{ asset('js/caroussel.js') }}"></script>
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCCAjpCNHZXQiBRY3MSoZ7YYOQST1HtF0U&callback=initMap"></script>
+
+    <script src="{{ asset('js/completeAdresse.js') }}"></script>
     <script src="{{ asset('js/map.js') }}"></script>
+    <script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCCAjpCNHZXQiBRY3MSoZ7YYOQST1HtF0U&callback=initMap&libraries=places">
+    </script>
+    
     </body>
 </html>
 
