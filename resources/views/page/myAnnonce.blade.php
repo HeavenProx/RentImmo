@@ -19,7 +19,7 @@
                         <p class="text-gray-700 mb-1">Prix: {{ $annonce->prix }} €</p>
                         <p class="text-gray-700 mb-1">Adresse: {{ $annonce->adresse }}</p>
                         <a href="{{ route('annonce.show', $annonce->id) }}" class="text-blue-500 mt-2 block">Voir plus</a>
-                        <a href="{{ route('annonce.show', $annonce->id) }}" class="text-green-500 mt-2 block">Modifier</a>
+                        <a href="{{ route('user.annonces.edit', $annonce->id) }}" class="text-green-500 mt-2 block">Modifier</a>
                         <form action="{{ route('user.annonce.destroy', $annonce->id) }}" method="POST">
                             @csrf
                             @method('DELETE')

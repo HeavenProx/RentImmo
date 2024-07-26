@@ -28,19 +28,52 @@ class AnnonceController extends Controller
         return view('page/search/searchAnnonce', compact('annonces'));
     }
 
+    public function edit($id)
+    {
+        $annonce = Annonce::findOrFail($id);
+        if ($annonce->createur_id != Auth::id()) {
+            return redirect()->route('user.annonces.index')->with('error', 'Vous n\'êtes pas autorisé à modifier cette annonce.');
+        }
+
+        return view('page.annonceEdit', compact('annonce'));
+    }
+
     public function destroy($id)
     {
         $annonce = Annonce::findOrFail($id);
-
-        // Check if the logged-in user is the owner of the annonce
         if ($annonce->createur_id != Auth::id()) {
             return redirect()->route('user.index')->with('error', 'Vous n\'êtes pas autorisé à supprimer cette annonce.');
         }
 
         $annonce->delete();
-
         return redirect()->route('user.index')->with('success', 'Annonce supprimée avec succès.');
     }
+
+    public function update(Request $request, $id)
+    {
+        $annonce = Annonce::findOrFail($id);
+        if ($annonce->createur_id != Auth::id()) {
+            return redirect()->route('user.index')->with('error', 'Vous n\'êtes pas autorisé à mettre à jour cette annonce.');
+        }
+
+        $request->validate([
+            'titre' => 'required|string|max:255',
+            'description' => 'required|string',
+            'adresse' => 'required|string|max:255',
+            'prix' => 'required|numeric',
+            'metre' => 'required|numeric',
+            'chambre' => 'required|numeric',
+            'salleDeBain' => 'required|numeric',
+            'parking' => 'required|boolean',
+            'garage' => 'required|boolean',
+            'terrain' => 'required|boolean',
+            'etat' => 'required|string|in:Neuf,Rénové,Plateau',
+        ]);
+
+        $annonce->update($request->all());
+        return redirect()->route('user.index')->with('success', 'Annonce mise à jour avec succès.');
+    }
+
 
     public function store(Request $request)
     {

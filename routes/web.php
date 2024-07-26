@@ -64,6 +64,9 @@ Route::get('/mes-annonces', [UserController::class, 'index'])->name('user.index'
 Route::get('/annonce-{id}', [AnnonceController::class, 'show'])->name('annonce.show');
 
 Route::delete('/mes-annonces/{id}', [AnnonceController::class, 'destroy'])->name('user.annonce.destroy');
+Route::get('/mes-annonces/{id}/edit', [AnnonceController::class, 'edit'])->name('user.annonces.edit');
+Route::put('/mes-annonces/{id}', [AnnonceController::class, 'update'])->name('user.annonces.update');
+
 
 /* --------------------- Search ------------------- */
 Route::get('/search', [AnnonceController::class, 'index']);
