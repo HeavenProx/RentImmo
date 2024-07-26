@@ -9,54 +9,8 @@ use App\Http\Controllers\ConnectionController;
 use App\Http\Controllers\AnnonceController;
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('page.welcome');
 });
-
-
-/*Route::get('/blog/{slug}-{id}', function (slug id) {
-    return view('welcome');
-});*/
-
-// Ajouter un blog
-Route::get('/blog-insert-{id}', function (string $id) {
-    $blog = new App\Models\Blog();
-    $blog->title = "Mon blog " . $id;
-    $blog->slug = "Mon article " . $id;
-    $blog->content = "Mon contenu " .$id;
-
-    $blog->save();
-    return $blog;
-});
-
-// Afficher tout les blogs
-Route::get('/blog-show', function () {
-    $blog = App\Models\Blog::all('title', 'slug');
-    return $blog;
-});
-
-// Afficher un blog en particulier
-Route::get('/blog-show-{id}', function (string $id) {
-    $blog = App\Models\Blog::findOrFail($id);
-    return $blog;
-});
-
-// Modifier un blog en particulier
-Route::get('/blog-update-{id}', function (string $id) {
-    $blog = App\Models\Blog::find($id);
-    $blog->title = "Nouveau titre " . $id;
-    $blog->save();
-});
-
-// Supprimer un blog en particulier
-Route::get('/blog-delete-{id}', function (string $id) {
-    $blog = App\Models\Blog::find($id);
-    $blog->delete();
-});
-
-
-// Afficher controller 
-Route::get('/controller-index', [BlogController::class, 'index']);
-
 
 // ------------------------- Login, Sign up et Logout---------------------------------//
 // Sign up

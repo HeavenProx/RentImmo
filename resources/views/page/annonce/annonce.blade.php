@@ -1,14 +1,7 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Détails de l'annonce</title>
-  <!-- Tailwind CSS -->
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="{{ asset('css/style.css') }}">
-</head>
-<body class="bg-gray-100">
+@extends('layout')     
+
+@section('content')
+
 @include('tools/buttonHome')
 @include('tools/buttonList')
 
@@ -115,8 +108,4 @@
     </div>
 </div>
 
-<script src="{{ asset('js/caroussel.js') }}"></script>
-<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCCAjpCNHZXQiBRY3MSoZ7YYOQST1HtF0U&callback=initMap"></script>
-<script src="{{ asset('js/map.js') }}"></script>
-</body>
-</html>
+@endsection
